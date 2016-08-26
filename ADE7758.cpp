@@ -3,6 +3,8 @@
 #include "software_spi.h"
 #include "ADE7758.h"
 #include <avr/wdt.h>
+
+// test
 extern void isrGDO0event(void);
 //public
 ADE7758::ADE7758(int SSpin):
