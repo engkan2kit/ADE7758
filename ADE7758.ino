@@ -1,17 +1,14 @@
-//test edit
 #include "Arduino.h"
 #include <SPI.h>
-#include "ADE7758.h"
+#include "ADE7758Lib.h"
 
 char inputChar;         // a string to hold incoming data
 boolean rx = false;  // whether the string is complete
-ADE7758 myADE(SPI,3);
+ADE7758 myADE(&SPI,3);
 void setup()
 {
   Serial.begin(9600);
-  
-  SPI.begin();
-  
+   
   myADE.begin();
   Serial.println("ADE7758 begins operating");
   delay(1000);

@@ -1,9 +1,8 @@
-#ifndef ADE7758_h
-#define ADE7758_h
+#ifndef _ADE7758LIB_h
+#define _ADE7758LIB_h
 
-#include "Arduino.h"
-#include "spi.h"
-#include "pins.h"
+#include <SPI.h>
+
 
 #define AWATTHR   0x01
 #define BWATTHR   0x02
@@ -124,15 +123,15 @@
 class ADE7758
 {
   public:
-    ADE7758 (int SSpin);
+    ADE7758 (SPIClass *,int );
     void begin();
-    int WattHR(char phase);
-    int VARHR(char phase);
-    int VAHR(char phase);
-    long VRMS(char phase);
-    long IRMS(char phase);
-    long waveform(char phase,char source);
-    int lineFreq(char phase);
+    int WattHR(char );
+    int VARHR(char );
+    int VAHR(char );
+    long VRMS(char );
+    long IRMS(char );
+    long waveform(char ,char );
+    int lineFreq(char );
 
     void accumulateEnergy();
 
@@ -145,26 +144,22 @@ class ADE7758
     long getResetInterruptStatus(void);
     void enableChip();
     void disableChip();
-     void write8bits(char reg, unsigned char data);
-    void write16bits(char reg, unsigned int data);
-    unsigned char read8bits(char reg);
-    unsigned int read16bits(char reg);
-    unsigned long read24bits(char reg);
+     void write8bits(char , unsigned char );
+    void write16bits(char , unsigned int );
+    unsigned char read8bits(char );
+    unsigned int read16bits(char );
+    unsigned long read24bits(char );
 
+    long getIRMS(char );
+    long getVRMS(char );
+    int getWattHR(char );
+    int getVARHR(char );
+    int getVAHR(char );
 
   private:
-
-   
-    long getIRMS(char phase);
-    long getVRMS(char phase);
-    int getWattHR(char phase);
-    int getVARHR(char phase);
-    int getVAHR(char phase);
-
-    SPI _ADE7758SPI;
+    
+    SPIClass *_ADE7758SPI;
     int _SSpin;	
-
-
     long accuWattHRA;
     long accuWattHRB;
     long accuVARHRA;
@@ -173,5 +168,5 @@ class ADE7758
     long accuVAHRB;
 };
 
-extern ADE7758 ADE;
+
 #endif
