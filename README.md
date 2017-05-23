@@ -7,9 +7,9 @@ Arduino Library for ADE7758
 
 This Library is not a complete ADE7758 library. I just implemented only the functions I used in a certain project. 
 
-I included an arduino .ino file for you test inside the ADEtest folder and I think also the ADE7758 in the root directory is a test. 
+Library files are ADE7758Lib.h and ADE7758Lib.cpp. To include the library in your projects, you can #include "ADE7758Lib.h"  in you project provided you put the files in your project folder. The library uses SPI at mode1 (CPOL=0 - clock idle is low,CPHA=1- data is read at falling edge of clock). The library results are uncalibrated. What I did to calibrate is to sample on different voltage levels and current levels measured from multimeter and perform a linear regression. Well, an equation given 2 points sometimes is enough. I sampled at 110V, 220V, 230V. I also sampled with different current loads. You can add a calibration function using the methods discussed in the datasheet.
 
-The library uses software SPI and the pinning is defined in the PINS.h. If you want to use the hardware SPI, change the software SPI functions to hardware SPI equivalent inside ADE7758.cpp and the use the hardware SPI pins.I used the hardware SPI before but I had to change it software SPI because I had to dedicate the hardware SPI alone with a very time sensitive IC. Feel free to change it. I didn't have time to edit this to use both.
+An Example ino file is included that uses the methods included in the source code. 
 
 You can implement other functions by filling up the empty functions I  left in the .cpp file. Just read the datasheet for the algorithm.
 
