@@ -2,8 +2,8 @@
 #include <SPI.h>
 #include "ADE7758Lib.h"
 
-char inputChar;         // a string to hold incoming data
-boolean rx = false;  // whether the string is complete
+volatile char inputChar;         // a string to hold incoming data
+volatile boolean rx = false;  // whether the string is complete
 ADE7758 myADE(&SPI,3);
 void setup()
 {
@@ -54,7 +54,7 @@ void loop()
 void serialEvent() {
   while (Serial.available()) {
     // get the new byte:
-    char inChar = (char)Serial.read(); 
+    inputChar = (char)Serial.read(); 
     rx = true;
   }
 }
